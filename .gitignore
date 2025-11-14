@@ -1,3 +1,12 @@
+# Node.js / Jazz
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+jazz.config.json
+.jazz/
+
 # Python
 __pycache__/
 *.py[cod]

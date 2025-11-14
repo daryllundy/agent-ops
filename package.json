@@ -1,0 +1,40 @@
+{
+  "name": "agentops",
+  "version": "0.1.0",
+  "description": "Production-ready multi-agent orchestration system following 12-Factor Agents methodology",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "jazz": "jazz",
+    "agent:create": "jazz agent create",
+    "agent:list": "jazz agent list",
+    "agent:chat": "jazz agent chat"
+  },
+  "dependencies": {
+    "jazz-ai": "^0.3.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daryllundy/agent-ops.git"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "llm",
+    "orchestration",
+    "12-factor",
+    "multi-agent",
+    "jazz",
+    "autonomous-agents"
+  ],
+  "author": "Daryl Lundy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daryllundy/agent-ops/issues"
+  },
+  "homepage": "https://github.com/daryllundy/agent-ops#readme"
+}

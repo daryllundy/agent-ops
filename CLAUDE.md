@@ -18,6 +18,9 @@ This repository contains a working implementation of the AgentOps multi-agent or
 - `agentops/core/llm_client.py` - LLM provider interface (OpenAI, Anthropic, RunPod, Ollama)
 - `agentops/agents/` - Specialized agent configurations (backend, devops, frontend)
 - `agentops/api/server.py` - FastAPI server with REST and WebSocket endpoints
+- `agentops/integrations/jazz_bridge.py` - Bridge to Jazz autonomous agents for real-world tool execution
+- `package.json` - Node.js dependencies for Jazz integration
+- `jazz.config.example.json` - Jazz configuration template
 
 ## Architecture
 
@@ -332,6 +335,7 @@ class AgentState:
 
 - **Backend**: Python 3.10+, FastAPI, asyncio, dataclasses
 - **Package Management**: uv (fast Python package installer and resolver)
+- **Agent Execution**: Jazz AI (TypeScript-based autonomous agents with real-world tool execution)
 - **Real-time Communication**: WebSockets
 - **LLM Integration**: OpenAI, Anthropic, RunPod, Ollama (multi-provider)
 - **State Management**: In-memory (Redis planned for persistence)
@@ -339,6 +343,18 @@ class AgentState:
 - **Code Quality**: ruff (formatting and linting)
 - **Deployment**: Docker, Docker Compose (planned)
 - **AI Models**: Open-source LLMs (configurable size)
+
+### Jazz Integration
+
+Jazz provides autonomous agents with real-world capabilities:
+- **Email Management**: 16 Gmail tools (search, send, label, archive)
+- **Git Operations**: 9 tools (commit, push, branch, status, diff)
+- **File System**: 15 tools (read, write, search, permissions)
+- **Shell Execution**: Command execution with security validation
+- **Web Search**: Information retrieval via Linkup
+- **HTTP Client**: REST API integration
+
+See [docs/JAZZ_INTEGRATION.md](docs/JAZZ_INTEGRATION.md) for setup and usage.
 
 ## Testing and Development
 

@@ -7,6 +7,7 @@ A production-ready multi-agent orchestration system for autonomous AI developmen
 - **12-Factor Agents Methodology**: Production-ready LLM agents following industry best practices
 - **Stateless Reducer Pattern**: Agents as pure functions enabling easy testing and debugging
 - **Multi-Provider LLM Support**: OpenAI, Anthropic, RunPod, and Ollama
+- **Jazz Integration**: Work with Jazz AI autonomous agents for real-world tool execution (email, git, filesystem, shell)
 - **Human-in-the-Loop**: Built-in support for human oversight and decision-making
 - **Specialized Agents**: Backend, DevOps, and Frontend developer agents with focused capabilities
 - **Explicit Control Flow**: No hidden magic, all state and control flow is transparent
@@ -38,7 +39,7 @@ pip install uv
 git clone https://github.com/daryllundy/agent-ops.git
 cd agent-ops
 
-# Install dependencies with uv
+# Install Python dependencies with uv
 uv sync
 
 # Or install with optional LLM provider dependencies
@@ -47,7 +48,36 @@ uv sync --extra anthropic   # For Anthropic
 uv sync --extra ollama      # For Ollama
 uv sync --extra all         # All providers
 uv sync --extra dev         # Development dependencies
+
+# Install Node.js dependencies (for Jazz integration)
+npm install
+
+# Or using other package managers
+# yarn install
+# pnpm install
+# bun install
 ```
+
+### Jazz Setup (Optional)
+
+To use Jazz autonomous agents for real-world tool execution:
+
+```bash
+# Install Jazz CLI globally (recommended)
+npm install -g jazz-ai
+
+# Verify installation
+npx jazz --version
+
+# Create Jazz configuration
+cp jazz.config.example.json jazz.config.json
+# Edit jazz.config.json with your API keys
+
+# Create your first Jazz agent
+npx jazz agent create
+```
+
+See [Jazz Integration Guide](docs/JAZZ_INTEGRATION.md) for detailed setup and usage.
 
 ### Running the Server
 
@@ -320,11 +350,12 @@ Planned deployment modes:
 
 - [CLAUDE.md](CLAUDE.md) - Comprehensive guide for AI assistants working with this codebase
 - [AGENT_OPS_DEPLOY.md](AGENT_OPS_DEPLOY.md) - Deployment guide for RunPod and other platforms
+- [Jazz Integration Guide](docs/JAZZ_INTEGRATION.md) - Complete guide for using Jazz autonomous agents
 
 ## References
 
 - [12-Factor Agents](https://github.com/humanlayer/12-factor-agents) - Methodology for production-ready LLM agents
-- [Jazz](https://github.com/lvndry/jazz) - Autonomous agent management inspiration
+- [Jazz](https://github.com/lvndry/jazz) - Autonomous agent CLI with real-world capabilities
 
 ## License
 

@@ -1,0 +1,17 @@
+{
+  "llm": {
+    "openai": {
+      "api_key": "sk-your-openai-api-key-here"
+    },
+    "anthropic": {
+      "api_key": "sk-ant-your-anthropic-api-key-here"
+    }
+  },
+  "google": {
+    "clientId": "your-google-client-id.apps.googleusercontent.com",
+    "clientSecret": "your-google-client-secret"
+  },
+  "linkup": {
+    "api_key": "your-linkup-api-key-for-web-search"
+  }
+}
