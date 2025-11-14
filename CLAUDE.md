@@ -15,7 +15,7 @@ This repository contains a working implementation of the AgentOps multi-agent or
 - `agentops/core/agent.py` - Core Agent class (stateless reducer pattern)
 - `agentops/core/orchestrator.py` - Agent orchestrator with lifecycle management
 - `agentops/core/tools.py` - Tool system with registry (plugin architecture)
-- `agentops/core/llm_client.py` - LLM provider interface (OpenAI, Anthropic, RunPod, Ollama)
+- `agentops/core/llm_client.py` - LLM provider interface (OpenAI, Anthropic, RunPod, Ollama, OpenRouter)
 - `agentops/agents/` - Specialized agent configurations (backend, devops, frontend)
 - `agentops/api/server.py` - FastAPI server with REST and WebSocket endpoints
 - `agentops/integrations/jazz_bridge.py` - Bridge to Jazz autonomous agents for real-world tool execution
@@ -62,7 +62,7 @@ The system implements all 12 factors from the 12-Factor Agents methodology:
 
 4. **LLM Client (`agentops/core/llm_client.py`)**
    - Natural language to tool calls (Factor 1)
-   - Multi-provider support: OpenAI, Anthropic, RunPod, Ollama
+   - Multi-provider support: OpenAI, Anthropic, RunPod, Ollama, OpenRouter
    - MockLLMClient for testing without API costs
 
 5. **Specialized Agents (`agentops/agents/`)**
@@ -195,6 +195,10 @@ llm_client = LLMClient(provider="runpod", endpoint="https://your-endpoint.runpod
 
 # For Ollama (local)
 llm_client = LLMClient(provider="ollama", endpoint="http://localhost:11434", model="llama2")
+
+# For OpenRouter (unified access to 100+ models)
+llm_client = LLMClient(provider="openrouter", api_key="your-key", model="openai/gpt-4o",
+                       site_url="https://yoursite.com", site_name="Your App")
 ```
 
 ### Tool System (Factor 4: Tools as Structured Outputs)
@@ -337,7 +341,7 @@ class AgentState:
 - **Package Management**: uv (fast Python package installer and resolver)
 - **Agent Execution**: Jazz AI (TypeScript-based autonomous agents with real-world tool execution)
 - **Real-time Communication**: WebSockets
-- **LLM Integration**: OpenAI, Anthropic, RunPod, Ollama (multi-provider)
+- **LLM Integration**: OpenAI, Anthropic, RunPod, Ollama, OpenRouter (multi-provider, 100+ models)
 - **State Management**: In-memory (Redis planned for persistence)
 - **Testing**: pytest, MockLLMClient for API-free testing
 - **Code Quality**: ruff (formatting and linting)

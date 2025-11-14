@@ -6,7 +6,7 @@ A production-ready multi-agent orchestration system for autonomous AI developmen
 
 - **12-Factor Agents Methodology**: Production-ready LLM agents following industry best practices
 - **Stateless Reducer Pattern**: Agents as pure functions enabling easy testing and debugging
-- **Multi-Provider LLM Support**: OpenAI, Anthropic, RunPod, and Ollama
+- **Multi-Provider LLM Support**: OpenAI, Anthropic, RunPod, Ollama, and OpenRouter (100+ models)
 - **Jazz Integration**: Work with Jazz AI autonomous agents for real-world tool execution (email, git, filesystem, shell)
 - **Human-in-the-Loop**: Built-in support for human oversight and decision-making
 - **Specialized Agents**: Backend, DevOps, and Frontend developer agents with focused capabilities
@@ -209,6 +209,15 @@ llm_client = LLMClient(
     provider="ollama",
     endpoint="http://localhost:11434",
     model="llama2"
+)
+
+# For OpenRouter (unified access to 100+ models)
+llm_client = LLMClient(
+    provider="openrouter",
+    api_key="your-openrouter-key",
+    model="openai/gpt-4o",  # or any other model
+    site_url="https://yoursite.com",  # Optional: for attribution
+    site_name="Your App Name"  # Optional: for attribution
 )
 ```
 
