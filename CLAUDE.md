@@ -96,16 +96,48 @@ Planned deployment modes:
 
 ## Development Commands
 
+This project uses [uv](https://github.com/astral-sh/uv) for fast Python package management.
+
+### Installation
+
+```bash
+# Install dependencies
+uv sync
+
+# Install with optional dependencies
+uv sync --extra openai      # OpenAI provider
+uv sync --extra anthropic   # Anthropic provider
+uv sync --extra ollama      # Ollama provider
+uv sync --extra dev         # Development tools (pytest, ruff)
+uv sync --extra all         # All providers
+```
+
 ### Running the Application
 
 ```bash
 # Local development with mock LLM (no API key required)
-python -m agentops.api.server
+uv run python -m agentops.api.server
 
 # Or directly
-python agentops/api/server.py
+uv run python agentops/api/server.py
 
 # Server will start on http://localhost:8000
+```
+
+### Development Tools
+
+```bash
+# Run tests
+uv run pytest
+
+# Format code
+uv run ruff format .
+
+# Lint code
+uv run ruff check .
+
+# Fix linting issues
+uv run ruff check --fix .
 ```
 
 ### API Interactions
@@ -299,10 +331,12 @@ class AgentState:
 ## Technology Stack
 
 - **Backend**: Python 3.10+, FastAPI, asyncio, dataclasses
+- **Package Management**: uv (fast Python package installer and resolver)
 - **Real-time Communication**: WebSockets
 - **LLM Integration**: OpenAI, Anthropic, RunPod, Ollama (multi-provider)
 - **State Management**: In-memory (Redis planned for persistence)
-- **Testing**: MockLLMClient for API-free testing
+- **Testing**: pytest, MockLLMClient for API-free testing
+- **Code Quality**: ruff (formatting and linting)
 - **Deployment**: Docker, Docker Compose (planned)
 - **AI Models**: Open-source LLMs (configurable size)
 
@@ -321,11 +355,14 @@ The mock client recognizes keywords in prompts and generates appropriate tool ca
 
 ### Development Workflow
 
-1. **Start the server**: `python agentops/api/server.py`
-2. **Create a task**: POST to `/tasks` with agent_type and description
-3. **Monitor via WebSocket**: Connect to `/ws` for real-time updates
-4. **Check status**: GET `/agents/{agent_id}/status`
-5. **Provide human input**: POST to `/agents/{agent_id}/human-response` when agent is `AWAITING_HUMAN`
+1. **Install dependencies**: `uv sync --extra dev`
+2. **Start the server**: `uv run python agentops/api/server.py`
+3. **Create a task**: POST to `/tasks` with agent_type and description
+4. **Monitor via WebSocket**: Connect to `/ws` for real-time updates
+5. **Check status**: GET `/agents/{agent_id}/status`
+6. **Provide human input**: POST to `/agents/{agent_id}/human-response` when agent is `AWAITING_HUMAN`
+7. **Run tests**: `uv run pytest`
+8. **Format code**: `uv run ruff format .`
 
 ### Adding New Agents
 

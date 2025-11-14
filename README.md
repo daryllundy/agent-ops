@@ -16,6 +16,21 @@ A production-ready multi-agent orchestration system for autonomous AI developmen
 
 ## Quick Start
 
+### Prerequisites
+
+This project uses [uv](https://github.com/astral-sh/uv) for fast Python package management. Install uv:
+
+```bash
+# macOS/Linux
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Windows
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Or with pip
+pip install uv
+```
+
 ### Installation
 
 ```bash
@@ -23,14 +38,25 @@ A production-ready multi-agent orchestration system for autonomous AI developmen
 git clone https://github.com/daryllundy/agent-ops.git
 cd agent-ops
 
-# Install dependencies (coming soon)
-pip install -r requirements.txt
+# Install dependencies with uv
+uv sync
+
+# Or install with optional LLM provider dependencies
+uv sync --extra openai      # For OpenAI
+uv sync --extra anthropic   # For Anthropic
+uv sync --extra ollama      # For Ollama
+uv sync --extra all         # All providers
+uv sync --extra dev         # Development dependencies
 ```
 
 ### Running the Server
 
 ```bash
 # Start with mock LLM (no API key required)
+uv run python agentops/api/server.py
+
+# Or activate the virtual environment
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 python agentops/api/server.py
 
 # Server runs on http://localhost:8000
@@ -248,11 +274,38 @@ llm_client = MockLLMClient()
 
 ### Development Workflow
 
-1. Start the server: `python agentops/api/server.py`
-2. Create tasks via REST API
-3. Monitor via WebSocket at `/ws`
-4. Check agent status and state
-5. Provide human responses when agents are `AWAITING_HUMAN`
+1. Install dev dependencies: `uv sync --extra dev`
+2. Start the server: `uv run python agentops/api/server.py`
+3. Create tasks via REST API
+4. Monitor via WebSocket at `/ws`
+5. Check agent status and state
+6. Provide human responses when agents are `AWAITING_HUMAN`
+
+### Running Tests
+
+```bash
+# Run tests with pytest
+uv run pytest
+
+# Run with coverage
+uv run pytest --cov=agentops
+
+# Run specific test file
+uv run pytest tests/test_agent.py
+```
+
+### Code Formatting and Linting
+
+```bash
+# Format code with ruff
+uv run ruff format .
+
+# Lint code
+uv run ruff check .
+
+# Fix linting issues automatically
+uv run ruff check --fix .
+```
 
 ## Deployment
 
